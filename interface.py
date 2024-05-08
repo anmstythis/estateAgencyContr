@@ -555,19 +555,6 @@ def registration():
     address = w3.geth.personal.new_account(password)
     print(f"Адрес нового аккаунта: {address}")
 
-def send_eth(account):
-    amount = int(input("Введите сумму: "))
-    try:
-        tx_hash = contract.functions.sendEth().transact(
-            {
-                "from": account,
-                "value": amount
-            }
-        )
-        print("Транзакция успешно отправлена. Хэш транзакции: ", tx_hash.hex())
-    except Exception as e:
-        print("Ошибка при отправке эфира: ", e)
-
 def get_balance(account):
     try:
         balance_wei = contract.functions.getBalance().call(
@@ -598,7 +585,8 @@ def createEstate(account):
     print("1. Дом \n2. Апартамент \n3. Квартира \n4. Лофт")
     while(True):
         try:
-            eType = int(input("Введите тип недвижимости: "))
+            eType = int(input("Введите тип недвижим"
+                              "ости: "))
             break
         except (ValueError):
             print("Введите число типа.")
