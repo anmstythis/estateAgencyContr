@@ -567,7 +567,13 @@ def get_balance(account):
         print("Ошибка при получении баланса: ", e)
 
 def withdraw(account):
-    amount = int(input("Введите сумму для снятия: "))
+    while (True):
+        try:
+            amount = int(input("Введите сумму для снятия: "))
+            break
+        except(ValueError):
+            print("Введите число.")
+            continue
     try:
         tx_hash = contract.functions.withDraw(amount).transact(
             {
@@ -585,8 +591,7 @@ def createEstate(account):
     print("1. Дом \n2. Апартамент \n3. Квартира \n4. Лофт")
     while(True):
         try:
-            eType = int(input("Введите тип недвижим"
-                              "ости: "))
+            eType = int(input("Введите тип недвижимости: "))
             break
         except (ValueError):
             print("Введите число типа.")
